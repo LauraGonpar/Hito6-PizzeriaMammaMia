@@ -1,0 +1,31 @@
+.cart-container {
+  background-color: rgb(255, 255, 255);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.img {
+  width: 100px;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  color: black;
+  gap: 20px;
+  text-transform: capitalize;
+  font-size: large;
+}
+.cart-item-container {
+  width: 800px;
+}
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
