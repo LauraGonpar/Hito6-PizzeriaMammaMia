@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext";
 import { Button } from "react-bootstrap";
+import "./Cart.css";
 
 export const Cart = () => {
   const { cartItems, addToCart, removeFromCart, total } = useCart();
@@ -9,12 +10,12 @@ export const Cart = () => {
   }
 
   return (
-    <div className="container my-5">
+    <div className="cart-container dflex my-5">
       <h2 className="mb-4">🛍️ Tu carrito</h2>
       {cartItems.map((item) => (
         <div
           key={item.id}
-          className="d-flex justify-content-between align-items-center border-bottom py-3"
+          className="d-flex justify-content-between align-items-center border-bottom py-3 mb-3 w-25"
         >
           <div className="d-flex align-items-center gap-3">
             <img
@@ -30,16 +31,18 @@ export const Cart = () => {
 
           <div className="d-flex align-items-center gap-2">
             <Button
-              variant="outline-danger"
-              size="sm"
+              variant="outline-success"
+              size="ml"
               onClick={() => removeFromCart(item.id)}
             >
               -
             </Button>
-            <span>{item.quantity}</span>
+            <span className="d-flex justify-content-center align-items-center">
+              {item.quantity}
+            </span>
             <Button
               variant="outline-success"
-              size="sm"
+              size="ml"
               onClick={() => addToCart(item)}
             >
               +
@@ -51,6 +54,7 @@ export const Cart = () => {
       <div className="text-end mt-4">
         <h4>Total: ${total.toLocaleString("es-CL")}</h4>
       </div>
+      <Button className="btn-success">Finalizar compra</Button>
     </div>
   );
 };

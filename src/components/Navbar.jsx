@@ -1,9 +1,11 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Navbar.css";
-import { useCart } from "../context/CartContext";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 export default function NavbarComponent() {
-  const { total } = useCart();
+  const { total } = useContext(CartContext);
 
   const token = true;
 
@@ -11,35 +13,49 @@ export default function NavbarComponent() {
     <nav>
       <Navbar expand="lg" className="bg-dark ">
         <Container>
-          <Navbar.Brand className="link-light fw-bold title-hover" href="/">
+          <Navbar.Brand
+            as={Link}
+            className="link-light fw-bold title-hover"
+            to="/"
+          >
             Pizzería Mamma Mía
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto ">
-              <Nav.Link className="link-light nav-hover-dark" href="/">
+              <Nav.Link as={Link} className="link-light nav-hover-dark" to="/">
                 🏠 Home
               </Nav.Link>
               {token ? (
                 <>
                   <Nav.Link
+                    as={Link}
                     className="link-light nav-hover-dark"
-                    href="/profile"
+                    to="/profile"
                   >
                     🔓 Profile
                   </Nav.Link>
-                  <Nav.Link className="link-light nav-hover-dark" href="/404">
+                  <Nav.Link
+                    as={Link}
+                    className="link-light nav-hover-dark"
+                    to="/404"
+                  >
                     🔒 Logout
                   </Nav.Link>
                 </>
               ) : (
                 <>
-                  <Nav.Link className="link-light nav-hover-dark" href="/login">
+                  <Nav.Link
+                    as={Link}
+                    className="link-light nav-hover-dark"
+                    to="/login"
+                  >
                     🔐 Login
                   </Nav.Link>
                   <Nav.Link
+                    as={Link}
                     className="link-light nav-hover-dark"
-                    href="/register"
+                    to="/register"
                   >
                     🔐 Register
                   </Nav.Link>
@@ -49,8 +65,11 @@ export default function NavbarComponent() {
           </Navbar.Collapse>
         </Container>
         <>
-          <Nav.Link className="me-auto p-2 card-hover-dark" href="/cart">
-            {" "}
+          <Nav.Link
+            as={Link}
+            className="me-auto p-2 card-hover-dark"
+            to="/cart"
+          >
             🛒 Total: ${total.toFixed(0)}
           </Nav.Link>
         </>
